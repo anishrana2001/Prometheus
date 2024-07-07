@@ -29,6 +29,10 @@ tar xvf prometheus-2.52.0.linux-amd64.tar.gz
 ```
 cd prometheus-2.52.0.linux-amd64/
 ```
+```
+ls -ltr
+```
+
 In this directory, you will observe 2 files, i.e. prometheous and promtool. Copy both files in the "/usr/local/bin/" directory. So that we can run these commands without specifing the absolute path.
 ```
 cp prometheus promtool /usr/local/bin/
