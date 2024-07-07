@@ -6,28 +6,31 @@
 ```
 sudo useradd -M -r -s /bin/false pushgateway
 ```
-###  Open the Prometheus URL:  https://prometheus.io/download/
-```
-wget https://github.com/prometheus/pushgateway/releases/download/v1.9.0/pushgateway-1.9.0.linux-amd64.tar.gz
-```
 
+### Create a directory, where we will download our packages.
 ```
 mkdir /data
 ```
 ```
 cd /data
 ```
-
+###  Open the Prometheus URL:  https://prometheus.io/download/
+```
+wget https://github.com/prometheus/pushgateway/releases/download/v1.9.0/pushgateway-1.9.0.linux-amd64.tar.gz
+```
+### Untar the file.
 ```
 tar xvf pushgateway-1.9.0.linux-amd64.tar.gz
 ```
-
+### Go inside this directory.
 ```
 cd pushgateway-1.9.0.linux-amd64/
 ```
+### Copy the binary file into the "/usr/local/bin/" directory.
 ```
 cp pushgateway /usr/local/bin/
 ```
+### Giviing the permission. 
 ```
 chown pushgateway:pushgateway /usr/local/bin/pushgateway
 ```
@@ -117,7 +120,7 @@ pushgateway_build_info
 ###  How to push the data to pushgateway so that Prometheus will scrape the data.
 ###  With the help of Bash and Python script.
 
-###  bash 
+###  bash -- "key value", in metric "web_app2" we have defined the lables too. See the at the end.
 ```
 echo "web_app1 0" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/web_app1/
 echo "web_app2 10.03" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/web_app2/instance/192.168.1.50:9000/cpu/0
@@ -134,3 +137,15 @@ my_new_metric 3
 EOF
 ```
 
+### Open the Prometheus GUI 
+
+```
+http://192.168.1.31:9090
+```
+
+```
+web_app1
+```
+```
+web_app2
+```
