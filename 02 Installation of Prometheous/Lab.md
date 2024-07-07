@@ -136,6 +136,10 @@ scrape_configs:
 ### There are three blocks of configuration in the example configuration file: global, rule_files, and scrape_configs.
 ### In global block, We have two options present. The first, scrape_interval, controls how often Prometheus will scrape targets. You can also override this for individual targets. In this case the global setting is to scrape every 15 seconds. The evaluation_interval option controls how often Prometheus will evaluate rules. Prometheus uses rules to create new time series and to generate alerts. In this case, it will check the new rules every 15 seconds.
 
+### We can also check the syntax of prometheus.yaml file.
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
 ### Reload the Prometheus configuration: 
 
 ```
