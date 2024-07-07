@@ -84,15 +84,21 @@ ExecStart=/usr/local/bin/prometheus \
 [Install]
 WantedBy=multi-user.target
 ```
-
+### As we have created a new service, thus, we have reload the dameon.
 ```
 sudo systemctl daemon-reload
 ```
+### Let's start the node_exporter service.
 ```
 sudo systemctl start prometheus
 ```
+### It would be worth to enable the service, if system restart then our service will also be started.
 ```
 sudo systemctl enable prometheus
+```
+### Post checks are always a good practice. Hence, check the status of service.
+```
+systemctl status prometheus
 ```
 
 ### For more troubleshooting, you may execute below commands. Only to see more logs.
