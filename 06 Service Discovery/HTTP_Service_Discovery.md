@@ -86,11 +86,11 @@ scrape_configs:
 ```
 killall -HUP Prometheus
 ```
-###  If you 
+###  If you observe some issue, then you can use below command. 
 ```
 journalctl -eu prometheus | tail -n 10
 ```
-### If you observe some issue, then you can use below command. 
+### Or you can also restart the Prometheus service
 ```
 systemctl restart prometheus.service 
 ```
