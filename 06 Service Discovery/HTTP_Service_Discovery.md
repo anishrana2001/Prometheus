@@ -8,11 +8,12 @@ yum install nginx -y
 ```
 vi /etc/nginx/nginx.conf
 ```
+```
 ==================================================== 
     include             /etc/nginx/mime.types;
     default_type        application/json;
 ==================================================== 
-
+```
 ### Create a new "default.conf" file and our web services will be running on port 8080.
 ### root location = /usr/share/nginx/html
 ### Will mention a new page /healthz and in this file, we will add all the details.
