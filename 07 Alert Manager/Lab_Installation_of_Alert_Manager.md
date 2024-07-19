@@ -5,7 +5,7 @@
 useradd -M -r -s /bin/false alertmanager
 ```
 
-# URL: https://github.com/prometheus/alertmanager/releases/        ---> Go down to the page.
+# URL: https://github.com/prometheus/alertmanager/releases/       
 ```
 wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
 ```
