@@ -113,7 +113,22 @@ http://192.168.1.33:9093/#/alerts
 ```
 
 ### 2. Create a Silence rule on one server and it should replicate on the 2nd Alert Manager.
+## 
+## 
 
 ![image](https://github.com/user-attachments/assets/cb287f3b-9b11-4f10-8cc3-93572c7f326a)
+
+## 
+## 
+
+![image](https://github.com/user-attachments/assets/7d4d3e5c-43f5-4b70-988c-e12f8fb67117)
+
+## 
+## Same thing, you will be observed on 2nd Alertmanager.
+
+![image](https://github.com/user-attachments/assets/c0f5391d-a091-43a3-bf05-b6490147ff61)
+
+### From the above 2 tests, we can confirm that our Alermanagers are working in a cluster mode.
+
 
 
