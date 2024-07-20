@@ -141,7 +141,10 @@ alerting:
     - static_configs:
         - targets: ["192.168.1.32:9093", "192.168.1.33:9093"]    # added only
 ```
-
+### Check the Prometheus config syntax
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
 ### Reload Prometheus configuration to load the new configuration:
 ```
 killall -HUP prometheus
