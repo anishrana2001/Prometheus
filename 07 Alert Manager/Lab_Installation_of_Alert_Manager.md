@@ -5,35 +5,37 @@
 useradd -M -r -s /bin/false alertmanager
 ```
 
-# URL: https://github.com/prometheus/alertmanager/releases/       
+###  URL: https://github.com/prometheus/alertmanager/releases/ 
+
+### Dowload the file on workernode1.
 ```
 wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
 ```
-
+### Extract the file.
 ```
 tar xvzf alertmanager-0.27.0.linux-amd64.tar.gz 
 ```
-
+### Go inside this directory.
 ```
 cd alertmanager-0.27.0.linux-amd64/
 ```
-
+### You will observe 2 binary files, i.e. amtool and alertmanager. Copy these files to "/usr/local/bin/" directory. So that we can execute these commands without specifying the absolute path.
 ```
 cp alertmanager amtool /usr/local/bin/
 ```
-
+### Change the owernership of both binary files to "alertmanager".
 ```
 chown alertmanager:alertmanager /usr/local/bin/{alertmanager,amtool}
 ```
-
+### Create a new directory "/etc/alertmanager"
 ```
 mkdir -p /etc/alertmanager
 ```
-
+### Copy the "alertmanager.yml" into newly created directory "/etc/alertmanager".
 ```
 cp alertmanager.yml /etc/alertmanager/
 ```
-
+### After that change the ownership to alertmanager user.
 ```
 chown -R alertmanager:alertmanager /etc/alertmanager
 ```
@@ -43,11 +45,11 @@ chown -R alertmanager:alertmanager /etc/alertmanager
 ```
 mkdir -p /var/lib/alertmanager
 ```
-
+### After that change the ownership to alertmanager user.
 ```
 chown alertmanager:alertmanager /var/lib/alertmanager
 ```
-
+### Create a new directory for amtool. In this directory, we will create a new config.yaml file. In this file, we will specify this VM IP or localhost variable.
 ```
 mkdir -p /etc/amtool
 ```
@@ -57,7 +59,7 @@ cat <<EOF>> /etc/amtool/config.yml
 alertmanager.url: http://localhost:9093
 EOF
 ```
-
+### Now, we have created all the desired directory and files. Let's create a service. 
 
 ```
 cat <<EOF>> /etc/systemd/system/alertmanager.service
@@ -86,12 +88,10 @@ systemctl start alertmanager
 ```
 
 ### How we can verify it ?
-
-### Verify the service is running and you can reach it:
-
 ```
 systemctl status alertmanager
 ```
+### Verify the service is running and you can reach it:
 
 ```
 curl localhost:9093
