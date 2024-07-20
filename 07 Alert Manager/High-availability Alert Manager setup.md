@@ -124,11 +124,33 @@ http://192.168.1.33:9093/#/alerts
 ![image](https://github.com/user-attachments/assets/7d4d3e5c-43f5-4b70-988c-e12f8fb67117)
 
 ## 
-## Same thing, you will be observed on 2nd Alertmanager.
+### Same thing, you will be observed on 2nd Alertmanager.
 
 ![image](https://github.com/user-attachments/assets/c0f5391d-a091-43a3-bf05-b6490147ff61)
 
 ### From the above 2 tests, we can confirm that our Alermanagers are working in a cluster mode.
 
 
+### One last thing is pending, i.e. add 2nd alertmanager IP and port number in the Prometheus configuration file.
+```
+vi /etc/prometheus/prometheus.yml
+```
+```
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["192.168.1.32:9093", "192.168.1.33:9093"]    # added only
+```
 
+### Reload Prometheus configuration to load the new configuration:
+```
+killall -HUP prometheus
+```
+
+### Post check!
+
+```
+http://192.168.1.31:9090
+```
+### Status --> Runtime & Build Information
+### At the bottom of this page, you will observe your AlertManager.
