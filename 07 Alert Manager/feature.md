@@ -1,7 +1,7 @@
 ### In prometheus server under rule directory.
 
 ```
-cat <<EOF>> test-alerts.yml 
+cat <<EOF>> /etc/prometheus/rules/test-alerts.yml 
 groups:
 - name: test-alerts
   rules:
