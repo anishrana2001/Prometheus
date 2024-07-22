@@ -51,8 +51,10 @@ http://192.168.1.32:9093/#/alerts
 
 
 ### In Alert Manager
-
-vi /etc/alertmanager/alertmanager.yml 
+```
+vi /etc/alertmanager/alertmanager.yml
+```
+```
 route:
   group_by: ['cluster1']
   group_wait: 30s
@@ -63,7 +65,7 @@ receivers:
   - name: 'webhook'
     webhook_configs:
       - url: 'http://127.0.0.1:5001/'
-
+```
 
 
 
