@@ -1,3 +1,5 @@
+
+
 ### Login into the Workernode2 server (192.168.1.33).
 ```
 cat <<EOF>> prometheus-federation.sh
@@ -10,11 +12,6 @@ mkdir /etc/prometheus /var/lib/prometheus
 
 echo "chown prometheus:prometheus /var/lib/prometheus"
 chown prometheus:prometheus /var/lib/prometheus
-
-echo -e "\033[32m Creating '/etc/prometheus/rules' directory \033[m"
-echo "mkdir -p /etc/prometheus/rules"
-mkdir -p /etc/prometheus/rules
-
 
 echo -e "\033[32m Download the file\033[m"
 wget https://github.com/prometheus/prometheus/releases/download/v2.52.0/prometheus-2.52.0.linux-amd64.tar.gz
@@ -37,6 +34,15 @@ echo -e "\033[32m --- \033[m"
 echo -e "\033[32m Changes the owernership of both files (prometheus,promtool) \033[m"
 echo "chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}"
 chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}
+
+echo -e "\033[32mCopy the Prometheus configuration file on "/etc/prometheus/" \033[m"
+echo "cp prometheus.yml /etc/prometheus/"
+cp /root/prometheus-2.52.0.linux-amd64/prometheus.yml /etc/prometheus/
+
+echo -e "\033[32mChange the ownership of Prometheus' configuration file  "/etc/prometheus/prometheus.yml" \033[m"
+echo "chown -R prometheus:prometheus /etc/prometheus"
+chown -R prometheus:prometheus /etc/prometheus
+
 
 echo -e "\033[32m Copy the files consoles & console_libraries into the directory '/etc/prometheus/'  \033[m"
 echo "cp -r {consoles,console_libraries}  /etc/prometheus/"
@@ -113,6 +119,10 @@ http://192.168.1.33:9090/rules
 ### Our new Prometheus server is up and running and now, we can add the federation configuration
 
 ```
+vi /etc/prometheus/prometheus.yml 
+```
+
+```
 scrape_configs:
   - job_name: 'federate'
     scrape_interval: 15s
@@ -129,4 +139,15 @@ scrape_configs:
       - targets:
         - '192.168.1.31:9090'
         - '192.168.1.32:9090'
+```
+
+
+### Check the configuration. 
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
+
+### Reload the configuration.
+```
+killall -HUP prometheus
 ```
