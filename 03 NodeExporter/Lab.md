@@ -98,6 +98,11 @@ systemctl disable firewalld
 
 
 ### I am installing this "node_exporter" service on master1 node, thus, I can use localhost instead of my VM IP "192.168.1.31".
+### Before adding the information on Prometheus server, let's check the target on Prometheus GUI. It should be only one.
+```
+http://192.168.1.31:9090/targets
+```
+
 ### Configure Prometheus to Scrape Metrics. Locate the scrape_configs section and add a new entry under that section.
 ```
 vi /etc/prometheus/prometheus.yml
