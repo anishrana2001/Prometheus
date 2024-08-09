@@ -89,10 +89,10 @@ vi /etc/prometheus/prometheus.yml
 
 ### Under the scrape_configs section, add a scrape configuration for Pushgateway. Be sure to set honor_labels: true:
 ```
-- job_name: 'Pushgateway'
- honor_labels: true
- static_configs:
- - targets: ['192.168.1.33:9091']
+  - job_name: 'Pushgateway'
+    honor_labels: true
+    static_configs:
+    - targets: ['192.168.1.33:9091']
  ```
  
 
