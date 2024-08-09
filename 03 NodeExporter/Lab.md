@@ -170,6 +170,73 @@ stress-ng -m 2
 ```
 ### m = memory 
 ### 2 = 2 virtual hogs
+## Now, you need to login into the workernode1 (192.168.1.32) and execute the below script.
+
+```
+cat <<EOF>> node_exporter.sh
+useradd -M -r -s /bin/false node_exporter
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz
+tar xzf node_exporter-1.8.1.linux-amd64.tar.gz
+cd node_exporter-1.8.1.linux-amd64/
+cp node_exporter /usr/local/bin/
+chown node_exporter:node_exporter /usr/local/bin/node_exporter 
+echo "[Unit]
+Description=Prometheus Node Exporter
+Wants=network-online.target
+After=network-online.target
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/node_exporter.service
+
+systemctl stop firewalld
+firewall-cmd --state
+systemctl disable firewalld
+sudo systemctl daemon-reload
+sudo systemctl start node_exporter
+sudo systemctl enable node_exporter
+EOF
+```
+
+### Now, check the NodeExporter service.
+```
+/usr/local/bin/node_exporter
+```
+
+### If required, then execute below commands.
+```
+netstat -nlp | grep 9100
+```
+```
+fuser -k 9100/tcp
+```
+```
+systemctl restart node_exporter
+```
+
+### It's time to login into the Prometheus server (192.168.1.31)
+```
+vi /etc/prometheus/prometheus.yml
+```
+
+```
+
+  - job_name: "node-exporter"                 # Added
+    static_configs:                           # Added
+      - targets: ["192.168.1.32:9100","192.168.1.32:9100"]        # Added
+```
+### Check the Prometheus configuration syntax
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
+```
+killall -HUP prometheus
+```
 
 
-### Every time series is uniquely identified by its metric name. Metrics name specific to an application, the prefix is usually the application name itself. 
+
+
+### Every timeseries is uniquely identified by its metric name. Metrics name specific to an application, the prefix is usually the application name itself. 
