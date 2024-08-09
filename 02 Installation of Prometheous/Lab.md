@@ -64,7 +64,7 @@ prometheus --config.file=/etc/prometheus/prometheus.yml
 ```
 ### We can also create a Systemctl service and then enable this service, thus, in futher if our server OS restarted  then our service will be started by systectl service.
 ```
-vi /etc/systemd/system/prometheus.service
+cat <<EOF>> /etc/systemd/system/prometheus.service
 [Unit]
 Description=Prometheus Time Series Collection and Processing Server
 Wants=network-online.target
@@ -83,6 +83,7 @@ ExecStart=/usr/local/bin/prometheus \
  --web.console.libraries=/etc/prometheus/console_libraries
 [Install]
 WantedBy=multi-user.target
+EOF
 ```
 ### As we have created a new service, thus, we have reload the dameon.
 ```
