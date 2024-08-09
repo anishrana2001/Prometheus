@@ -200,7 +200,15 @@ sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 EOF
 ```
+### Give the execute permission to this script.
+```
+chmod 655 node_exporter.sh
+```
 
+### Execute the script.
+```
+sh node_exporter.sh
+```
 ### Now, check the NodeExporter service.
 ```
 /usr/local/bin/node_exporter
