@@ -80,7 +80,7 @@ fuser -k 9100/tcp
 
 ### Now, you can run the below command to check if node_exporter is running as expected ?
 ```
-/data/node_exporter-1.8.1.linux-amd64/node_exporter  
+/usr/local/bin/node_exporter
 ```
 
 ### Stop and disable the Firewall, if Firewall is raising some concern then you might need to stop the firewall. This is only for LAB. For production, you have to ask your Firewall team to open the desired ports.
