@@ -158,7 +158,7 @@ node_memory_MemFree_bytes
 node_cpu_seconds_total
 ```
 
-###Login to Node_exporter node
+### Login to Node_exporter node i.e. master1.example.com
 ```
 wget wget   https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/stress-ng-0.17.08-2.el9.x86_64.rpm
 ```
@@ -166,7 +166,7 @@ wget wget   https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packag
 yum localinstall stress-ng-0.17.08-2.el9.x86_64.rpm -y
 ```
 ```
-stress -m 2 
+stress-ng -m 2
 ```
 ### m = memory 
 ### 2 = 2 virtual hogs
