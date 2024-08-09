@@ -7,6 +7,14 @@
 sudo useradd -M -r -s /bin/false pushgateway
 ```
 
+### As we are running our server on LAB, so I am disabling the Firewall.
+```
+systemctl stop firewalld
+firewall-cmd --state
+systemctl disable firewalld
+```
+
+
 ### Create a directory, where we will download our packages.
 ```
 mkdir /data
