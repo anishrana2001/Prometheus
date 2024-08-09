@@ -130,7 +130,7 @@ rule_files:
 scrape_configs:
   - job_name: prometheus
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['localhost:9090']   # If you wish, you can change it to VM IP, for me its 192.168.1.31
  -----------------------------------
 ```
 
@@ -160,3 +160,10 @@ http://192.168.1.31:9090/metrics
 ### one metric that Prometheus exports about itself is called "promhttp_metric_handler_requests_total" (the total number of /metrics requests the Prometheus server has served). 
 ### Go ahead and enter this into the expression console:
 
+```
+http://192.168.1.31:9090
+```
+
+```
+promhttp_metric_handler_requests_total
+```
