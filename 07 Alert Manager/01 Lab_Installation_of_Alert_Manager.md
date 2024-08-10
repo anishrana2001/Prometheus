@@ -1,5 +1,6 @@
 ## Installation of Alertmanager:
 
+### We will going to install the Alertmanager on Workernode1 (192.168.1.32)
 ### Create a user and group for Alertmanager:
 ```
 useradd -M -r -s /bin/false alertmanager
