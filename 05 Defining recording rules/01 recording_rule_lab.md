@@ -6,6 +6,10 @@
 ```
 mkdir -p /etc/prometheus/rules
 ```
+### Go into this directory.
+```
+cd /etc/prometheus/rules
+```
 ### Create a rule file. Remember that we have to create the YAML file.
 ```
 vi global_rule.yaml
