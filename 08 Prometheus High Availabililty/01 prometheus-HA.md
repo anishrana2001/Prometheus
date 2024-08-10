@@ -14,7 +14,7 @@ service sshd restart
 
 ### Now, login into the Workernode1 server.
 ```
-cat <<EOF>> prometheus-HA.sh
+cat <<EOF>> /data/prometheus-HA.sh
 prometheus_PIP=192.168.1.31
 echo -e "\033[32m create a user 'prometheus'\033[m"
 useradd -M -r -s /bin/false prometheus
@@ -99,7 +99,8 @@ EOF
 
 ### Execute the script.
 ```
-sh prometheus-HA.sh 
+chmod 755 /data/prometheus-HA.sh 
+sh /data/prometheus-HA.sh 
 ```
 
 ### Check the secondary Prometheus configuration.
