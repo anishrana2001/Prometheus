@@ -76,6 +76,22 @@ groups:
           severity: critical
        annotations:                  # Annotations to add to each alert.
           description: node_manager
+     - alert: HostOutOfMemory
+       expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+       for: 2m
+       labels:
+         severity: warning
+       annotations:
+         summary: Host out of memory (instance {{ $labels.instance }})
+         description: Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}
+     - alert: HostMemoryUnderMemoryPressure
+       expr: rate(node_vmstat_pgmajfault[1m]) > 1000
+       for: 2m
+       labels:
+          severity: warning
+       annotations:
+          summary: Host memory under memory pressure (instance {{ $labels.instance }})
+          description: The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}
 EOF
 ```
 
