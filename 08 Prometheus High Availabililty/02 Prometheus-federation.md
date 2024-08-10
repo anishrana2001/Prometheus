@@ -2,7 +2,7 @@
 
 ### Login into the Workernode2 server (192.168.1.33).
 ```
-cat <<EOF>> prometheus-federation.sh
+cat <<EOF>> /data/prometheus-federation.sh
 echo -e "\033[32m create a user 'prometheus'\033[m"
 useradd -M -r -s /bin/false prometheus
 
@@ -84,7 +84,7 @@ EOF
 
 ### Execute the script.
 ```
-sh prometheus-federation.sh
+sh /data/prometheus-federation.sh
 ```
 
 ### Check the Federate Prometheus configuration.
