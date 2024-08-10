@@ -1,4 +1,6 @@
+# Recording rule
 
+## Will going to create the recording rules on Prometheus server (master1.example.com)
 
 ### Create a directory for rules
 ```
