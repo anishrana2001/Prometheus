@@ -141,7 +141,11 @@ https://prometheus.io/docs/alerting/latest/configuration/
 ```
 
 ## How to edit the Alertmanager config file?
-### Login to Alermanager CLI
+### First, check the Alertmanager GUi
+```
+http://192.168.1.32:9093/#/status
+```
+### Now, Login to Alermanager CLI
 
 ### Edit the Alertmanager configuration file
 
