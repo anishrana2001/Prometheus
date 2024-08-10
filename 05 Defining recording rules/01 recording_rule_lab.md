@@ -63,7 +63,7 @@ recording_rule_node_cpu_seconds_total_5m
 ## For Alert:
 
 ```
-echo <<EOF>> /etc/prometheus/rules/alert.yaml 
+cat <<EOF>> /etc/prometheus/rules/alert.yaml 
 groups:
  - name: nginx_server
    interval: 15s
