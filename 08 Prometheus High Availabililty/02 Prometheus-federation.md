@@ -37,7 +37,7 @@ chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}
 
 echo -e "\033[32mCopy the Prometheus configuration file on "/etc/prometheus/" \033[m"
 echo "cp prometheus.yml /etc/prometheus/"
-cp /root/prometheus-2.52.0.linux-amd64/prometheus.yml /etc/prometheus/
+cp prometheus.yml /etc/prometheus/
 
 echo -e "\033[32mChange the ownership of Prometheus' configuration file  "/etc/prometheus/prometheus.yml" \033[m"
 echo "chown -R prometheus:prometheus /etc/prometheus"
