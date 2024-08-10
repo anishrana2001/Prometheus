@@ -140,7 +140,7 @@ http://192.168.1.31:9090
 https://prometheus.io/docs/alerting/latest/configuration/
 ```
 
-
+## How to edit the Alertmanager config file?
 ### Login to Alermanager CLI
 
 ### Edit the Alertmanager configuration file
@@ -156,6 +156,8 @@ global:
  resolve_timeout: 10m
 ```
 ```
+global:                       ## Added
+  resolve_timeout: 10m        ## Added
 route:
   group_by: ['alertname']
   group_wait: 30s
