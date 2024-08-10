@@ -132,13 +132,15 @@ scrape_configs:
 
     params:
       'match[]':
-        - '{job="prometheus"}'
+         - '{job!~"prometheus"}'
+#        - '{job="node-exporter"}'
+#        - '{job="my_http_sd_job"}'
 
 
     static_configs:
       - targets:
-        - '192.168.1.31:9090'
-        - '192.168.1.32:9090'
+         - '192.168.1.31:9090'
+#        - '192.168.1.32:9090'
 ```
 
 
@@ -150,4 +152,12 @@ promtool check config /etc/prometheus/prometheus.yml
 ### Reload the configuration.
 ```
 killall -HUP prometheus
+```
+### It's a time for post checks.....
+### Open the New Prometheus GUI (federation one)
+```
+http://192.168.1.33:9090
+```
+```
+up
 ```
