@@ -5,6 +5,15 @@
 ```
 useradd -M -r -s /bin/false alertmanager
 ```
+### Create a new directory
+```
+mkdir /data
+```
+
+### Go inside this directory
+```
+cd /data
+```
 
 ###  URL: https://github.com/prometheus/alertmanager/releases/ 
 
