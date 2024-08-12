@@ -2,6 +2,16 @@
 ### We will going to install the HTTP Service on our NGINX VM (192.168.1.7)
 ### For HTTP service, we will install the NGINX web server and then create a web page. In this web page, we will add the alert details.
 
+### Before begin, let's create a directory "/data"
+```
+mkdir /data/
+```
+
+### Go inside this directory
+```
+cd /data/
+```
+### Now, install the NGINX web server from YUM utility.
 ```
 yum install nginx -y
 ```
