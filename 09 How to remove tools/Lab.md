@@ -510,6 +510,41 @@ http://192.168.1.31:9090
 ```
 
 ### Click on "Status" and then select "Targets". You should see only single "node-exporter" i.e. master one. 
-### Now, replease this exersize again on master1 node. As we installed the node-exporter on master node too and our promehteous is also installed on master node. 
+### As we installed the node-exporter on master node on the same server where we installed our promehteous. In order to remove the node-exporter from master node.
+Login into the master node.
+```
+cat <<EOF>> /data/uninstall-node_exporter.sh
+systemctl stop node_exporter.service
+systemctl disable node_exporter.service
+rm -rf /etc/systemd/system/node_exporter.service
+rm -rf /usr/local/bin/node_exporter
+rm -rf /data/node_exporter-1.8.1.linux-amd64.tar.gz
+rm -rf /data/node_exporter-1.8.1.linux-amd64
+userdel pushgateway
+EOF
+```
+
+```
+chmod 755 /data/uninstall-node_exporter.sh
+sh /data/uninstall-node_exporter.sh
+```
+
+```
+rm -rf /data/uninstall-node_exporter.sh
+rm -rf /data/node_exporter.sh
+```
+
+
+```
+vi /etc/prometheus/prometheus.yml
+```
+
+
+### Remove the below block only.
+```
+  - job_name: "node-exporter"                  # Added
+    static_configs:                            # Added
+      - targets: ["192.168.1.31:9100"]         # Added
+```
 
 
