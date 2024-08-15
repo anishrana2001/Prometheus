@@ -520,7 +520,7 @@ rm -rf /etc/systemd/system/node_exporter.service
 rm -rf /usr/local/bin/node_exporter
 rm -rf /data/node_exporter-1.8.1.linux-amd64.tar.gz
 rm -rf /data/node_exporter-1.8.1.linux-amd64
-userdel pushgateway
+userdel node_exporter
 EOF
 ```
 
