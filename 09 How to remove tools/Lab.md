@@ -547,4 +547,19 @@ vi /etc/prometheus/prometheus.yml
       - targets: ["192.168.1.31:9100"]         # Added
 ```
 
+### Check the Prometheus config syntax
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
 
+### Reload Prometheus configuration to load the new configuration:
+```
+killall -HUP prometheus
+```
+
+### Open the Prometheus server GUI.
+```
+http://192.168.1.31:9090
+```
+
+### Click on "Status" and then select "Targets". This time, you must see only a single prometheus job is running. 
