@@ -571,12 +571,12 @@ http://192.168.1.31:9090
 
 ### We have installed the Prometheus on master
 ### 
-### A simple script has been developed to uninstall this NodeExporter. In this script, 
-#### It first stop the NodeExporter.
-#### Disable the NodeExporter.
+### A simple script has been developed to uninstall this Prometheus. In this script, 
+#### It first stop the Prometheus.
+#### Disable the Prometheus.
 #### Remove the servie file that we created, remove its directory where the binary files and configuration files are stored.
 #### Remove the .tar file that we downloaded and then remove its dirtory too.
-#### In last, remove the NodeExporter user.
+#### In last, remove the Prometheus user.
 ```
 cat <<EOF>> /data/uninstall-prometheus.sh
 systemctl stop prometheus.service
