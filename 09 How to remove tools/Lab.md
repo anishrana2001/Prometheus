@@ -24,15 +24,13 @@ cat <<EOF>> /data/uninstall-prometheus-federation.sh
 systemctl stop prometheus.service
 systemctl disable prometheus.service
 rm -rf /etc/systemd/system/prometheus.service
-rm -rf /etc/prometheus/*
-rmdir /etc/prometheus
-rm -rf /var/lib/prometheus/*
-rmdir /var/lib/prometheus
-rm -rf /usr/local/bin/promtool/*
+rm -rf /etc/prometheus
+rm -rf /var/lib/prometheus
+rm -rf /usr/local/bin/promtool
+rm -rf /usr/local/bin/prometheus
 cd /data
 rm -rf /data/prometheus-2.52.0.linux-amd64.tar.gz
-rm -rf /data/prometheus-2.52.0.linux-amd64/*
-rmdir /data/prometheus-2.52.0.linux-amd64/
+rm -rf /data/prometheus-2.52.0.linux-amd64
 userdel prometheus
 rm -rf /data/prometheus-federation.sh
 EOF
@@ -64,15 +62,13 @@ cat <<EOF>> /data/uninstall-prometheus-HA.sh
 systemctl stop prometheus.service
 systemctl disable prometheus.service
 rm -rf /etc/systemd/system/prometheus.service
-rm -rf /etc/prometheus/*
-rmdir /etc/prometheus
-rm -rf /var/lib/prometheus/*
-rmdir /var/lib/prometheus
-rm -rf /usr/local/bin/promtool/*
+rm -rf /etc/prometheus
+rm -rf /var/lib/prometheus
+rm -rf /usr/local/bin/promtool
+rm -rf /usr/local/bin/prometheus
 cd /data
 rm -rf /data/prometheus-2.52.0.linux-amd64.tar.gz
-rm -rf /data/prometheus-2.52.0.linux-amd64/*
-rmdir /data/prometheus-2.52.0.linux-amd64/
+rm -rf /data/prometheus-2.52.0.linux-amd64
 userdel prometheus
 rm -rf /data/prometheus-HA.sh
 EOF
@@ -584,7 +580,8 @@ systemctl disable prometheus.service
 rm -rf /etc/systemd/system/prometheus.service
 rm -rf /etc/prometheus
 rm -rf /var/lib/prometheus
-rm -rf /usr/local/bin/promtool/*
+rm -rf /usr/local/bin/promtool
+rm -rf /usr/local/bin/prometheus
 cd /data
 rm -rf /data/prometheus-2.52.0.linux-amd64.tar.gz
 rm -rf /data/prometheus-2.52.0.linux-amd64
