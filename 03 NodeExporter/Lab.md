@@ -7,6 +7,17 @@
 ```
 useradd -M -r -s /bin/false node_exporter
 ```
+
+### Create a new directory
+```
+mkdir /data
+```
+
+### Go inside this directory
+```
+cd /data
+```
+
 ### Direct link to download the NodeExporter.
 ```
 https://prometheus.io/download/
