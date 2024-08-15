@@ -1,5 +1,11 @@
 # How to uninstall the monitoring tools
-## On wokernode2 (192.168.1.33) , uninstall the Prometheus federation server.
+## 01. Uninstall the Prometheus federation
+## 02. Uninstall the Prometheus HA server from Workernode1.
+## 03. Uninstall the Alertmanager HA server from Workernode2.
+## 04. Uninstall the Alertmanager server from Workernode1.
+## 05. Uninstall / remove HTTP Service Discover
+
+## 01. Uninstall the Prometheus federation server from wokernode2 (192.168.1.33) , 
 ### 
 ### A simple script has been developed to uninstall this Prometheus federation server. In this script, 
 #### It first stop the Prometheus service.
@@ -39,7 +45,7 @@ rm -rf /data/uninstall-prometheus-federation.sh
 
 
 
-### On Workernode1 , uninstall the Prometheus HA server.
+## 02. Uninstall the Prometheus HA server from Workernode1.
 ### 
 ### A simple script has been developed to uninstall this Prometheus HA server. In this script, 
 #### It first stop the Prometheus service.
@@ -79,7 +85,7 @@ rm -rf /data/uninstall-prometheus-HA.sh
 
 
 
-### On Workernode2 , uninstall the Alertmanager HA server.
+## 03. Uninstall the Alertmanager HA server from Workernode2.
 ### 
 ### A simple script has been developed to uninstall this Alertmanager HA server. In this script, 
 #### It first stop the Alertmanager service.
@@ -160,9 +166,7 @@ http://192.168.1.31:9090
 
 
 
-
-
-### On Workernode1 , uninstall the Alertmanager server.
+## 04. Uninstall the Alertmanager server from Workernode1.
 ### 
 ### A simple script has been developed to uninstall this Alertmanager server. In this script, 
 #### It first stop the Alertmanager service.
@@ -240,7 +244,7 @@ http://192.168.1.31:9090
 
 
 
-## How to remove HTTP Service Discover
+## 05. How to uninstall / remove HTTP Service Discover
 
 ### On NGINX VM , uninstall the HTTP Service Discover
 ### 
@@ -264,10 +268,6 @@ EOF
 chmod 755 /data/uninstall-http-service.sh
 sh /data/uninstall-http-service.sh
 ```
-
-
-
-
 
 
 ### It's time to clean the Prometheus server configuration file.
