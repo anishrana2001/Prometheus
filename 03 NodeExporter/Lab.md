@@ -186,6 +186,8 @@ stress-ng -m 2
 ```
 cat <<EOF>> node_exporter.sh
 useradd -M -r -s /bin/false node_exporter
+mkdir /data
+cd /data/
 wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz
 tar xzf node_exporter-1.8.1.linux-amd64.tar.gz
 cd node_exporter-1.8.1.linux-amd64/
