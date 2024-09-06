@@ -1,10 +1,12 @@
-# Prometheous
+# Prometheus
 
-### Create a user for Prometheous
+### Create a user for prometheus
+#### To create users without their home directories, the '-M' option is used.
+#### To see all options just execute the command "useradd" on the terminal.
 ```
 useradd -M -r -s /bin/false prometheus
 ```
-### Create a new directories, one is for Prometheus, where we can store the Prometheous configuration files and 2nd is for Prometheus storage.
+### Create a new directories, one is for Prometheus, where we can store the prometheus configuration files and 2nd is for Prometheus storage.
 ```
 mkdir /etc/prometheus /var/lib/prometheus
 ```
@@ -33,11 +35,11 @@ cd prometheus-2.52.0.linux-amd64/
 ls -ltr
 ```
 
-In this directory, you will observe 2 files, i.e. prometheous and promtool. Copy both files in the "/usr/local/bin/" directory. So that we can run these commands without specifing the absolute path.
+In this directory, you will observe 2 files, i.e. prometheus and promtool. Copy both files in the "/usr/local/bin/" directory. So that we can run these commands without specifying the absolute path.
 ```
 cp prometheus promtool /usr/local/bin/
 ```
-### Assign the privileges to prometheous user for both commands.
+### Assign the privileges to prometheus user for both commands.
 ```
 chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}
 ```
@@ -45,7 +47,7 @@ chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}
 ```
 cp -r {consoles,console_libraries}  /etc/prometheus/
 ```
-### Now, it's time to copy the config file of Prometheous into directory "/etc/prometheus/".
+### Now, it's time to copy the config file of prometheus into directory "/etc/prometheus/".
 ```
 cp prometheus.yml /etc/prometheus/
 ```
@@ -58,7 +60,7 @@ chown -R prometheus:prometheus /etc/prometheus
 chown prometheus:prometheus /var/lib/prometheus
 ```
 
-### Now, if we execute the below command, you will observe that your prometheous application is running. 
+### Now, if we execute the below command, you will observe that your prometheus application is running. 
 ```
 prometheus --config.file=/etc/prometheus/prometheus.yml
 ```
@@ -85,7 +87,7 @@ ExecStart=/usr/local/bin/prometheus \
 WantedBy=multi-user.target
 EOF
 ```
-### As we have created a new service, thus, we have reload the dameon.
+### As we have created a new service, thus, we have reload the daemon.
 ```
 sudo systemctl daemon-reload
 ```
@@ -112,7 +114,7 @@ journalctl -eu node_exporter
 curl localhost:9090
 ```
 
-### Open the webportal "http://192.168.1.31:9090" Please bear in mind that Prometheus will 
+### Open the web portal "http://192.168.1.31:9090" Please bear in mind that Prometheus will 
 
 
 ### Log in to your Prometheus server. Edit the Prometheus configuration file "sudo vi /etc/prometheus/prometheus.yml"
