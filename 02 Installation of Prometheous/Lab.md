@@ -10,6 +10,14 @@ useradd -M -r -s /bin/false prometheus
 ```
 mkdir /etc/prometheus /var/lib/prometheus
 ```
+### After that, create a directory where we can download our Prometheus packages. So that it will be easy for us when we will going to un-install the Prometheus server.
+```
+mkdir /data/
+```
+ ### Let's go inside this directory.
+ ```
+cd /data/
+```
 ### Download the latest packages.
 ```
 https://prometheus.io/download/
