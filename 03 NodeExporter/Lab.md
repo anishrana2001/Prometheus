@@ -1,7 +1,12 @@
 # NodeExporter
 
-## We will going to install NodeExporter on workernode1 and master1 nodes.
-## Node Exporter LAB : Note: NodeExporter service runs on 9100 port number.
+```text
+ We will going to install NodeExporter on workernode1 and master1 nodes.
+ Node Exporter LAB : Note: NodeExporter service runs on 9100 port number.
+```
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
 
 ### Create a user for node_exporter
 ```
