@@ -171,7 +171,7 @@ node_cpu_seconds_total
 
 ### Login to Node_exporter node i.e. master1.example.com
 ```
-wget wget   https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/stress-ng-0.17.08-2.el9.x86_64.rpm
+wget https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/stress-ng-0.17.08-2.el9.x86_64.rpm
 ```
 ```
 yum localinstall stress-ng-0.17.08-2.el9.x86_64.rpm -y
