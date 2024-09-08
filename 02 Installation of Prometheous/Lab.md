@@ -99,7 +99,7 @@ EOF
 ```
 sudo systemctl daemon-reload
 ```
-### Let's start the node_exporter service.
+### Let's start the prometheus service.
 ```
 sudo systemctl start prometheus
 ```
@@ -114,7 +114,7 @@ systemctl status prometheus
 
 ### For more troubleshooting, you may execute below commands. Only to see more logs.
 ```
-journalctl -eu node_exporter 
+journalctl -eu prometheus
 ```
 
 ### Post checks.
