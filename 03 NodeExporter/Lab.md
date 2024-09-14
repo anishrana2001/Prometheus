@@ -252,7 +252,7 @@ vi /etc/prometheus/prometheus.yml
 
   - job_name: "node-exporter"                 # Added
     static_configs:                           # Added
-      - targets: ["192.168.1.32:9100","192.168.1.32:9100"]        # Added
+      - targets: ["192.168.1.31:9100","192.168.1.32:9100"]        # Added
 ```
 ### Check the Prometheus configuration syntax
 ```
