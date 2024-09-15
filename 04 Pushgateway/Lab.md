@@ -138,8 +138,8 @@ echo "web_app2 12.03" | curl --data-binary @- http://192.168.1.33:9091/metrics/j
 ```
 cat << EOF | curl --data-binary @- http://192.168.1.33:9091/metrics/job/datacenter_delhi/instance/my_instance1
 # TYPE temperature gauge
-temperature{datacenter="delhi_state1"} 21
-temperature{database="delhi_state2"} 20
+temperature{datacenter="delhi_webserver1"} 21
+temperature{database="delhi_db-server1"} 20
 # TYPE my_metric gauge
 # HELP my_metric An example.
 my_new_metric 3
