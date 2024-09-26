@@ -60,6 +60,8 @@ systemctl start node_exporter.service
 ```
 ### Verify the status of service.
 ```
+
+![image](https://github.com/user-attachments/assets/11233a66-141c-44c6-b822-54ddb8018834)
 systemctl status node_exporter.service
 ```
 ### Refresh the Prometheus GUI page. You should observe 0 active alerts.
