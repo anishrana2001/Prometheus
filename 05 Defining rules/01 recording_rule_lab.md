@@ -63,7 +63,9 @@ recording_rule_node_cpu_seconds_total_5m
 ## For Alert:
 
 ```
-cat <<EOF>> /etc/prometheus/rules/alert.yaml 
+cat > /etc/prometheus/rules/alert.yaml
+```
+```
 groups:
  - name: nginx_server
    interval: 15s
@@ -91,8 +93,7 @@ groups:
           severity: warning
        annotations:
           summary: Host memory under memory pressure (instance {{ $labels.instance }})
-          description: The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-EOF
+          description: "The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
 ```
 
 ### Before reloading the Prometheus service, it would be worth to check the syntax error of our Prometheus configuration file.
