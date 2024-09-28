@@ -29,6 +29,12 @@ vi /etc/prometheus/prometheus.yml
         - '/tmp/filesd.json'
 ```
 
+### Check the syntax of file.
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
+
+
 ### Restart the Prometheus service.
 ```
 systemctl restart prometheus.service
