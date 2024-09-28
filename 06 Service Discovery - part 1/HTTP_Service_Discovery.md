@@ -1,4 +1,4 @@
-# HTTP Service Discover
+![image](https://github.com/user-attachments/assets/8b345fa9-6b0b-4bc0-a79a-a9017aa6f646)# HTTP Service Discover
 ### We will going to install the HTTP Service on our NGINX VM (192.168.1.7)
 ### For HTTP service, we will install the NGINX web server and then create a web page. In this web page, we will add the alert details.
 
@@ -93,9 +93,15 @@ scrape_configs:
       - url: 'http://192.168.1.7:8080/healthz'     # Added
         refresh_interval: 1m                       # Added
 ```
+
+### It is always a best practice to check the syntax of configuration file before restart the service.
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
+
 ### After modification of Prometheus configuration file, we have to restart the prometheus service
 ```
-killall -HUP Prometheus
+killall -HUP prometheus
 ```
 ###  If you observe some issue, then you can use below command. 
 ```
