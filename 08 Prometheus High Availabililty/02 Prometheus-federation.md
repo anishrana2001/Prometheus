@@ -84,6 +84,7 @@ EOF
 
 ### Execute the script.
 ```
+chmod 755 /data/prometheus-federation.sh
 sh /data/prometheus-federation.sh
 ```
 
@@ -116,7 +117,7 @@ http://192.168.1.33:9090
 http://192.168.1.33:9090/rules
 ```
 
-### Our new Prometheus server is up and running and now, we can add the federation configuration
+### Our new Prometheus server is up and running and now, we can add the federation configuration on workernode2 (192.168.1.33)
 
 ```
 vi /etc/prometheus/prometheus.yml 
