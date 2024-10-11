@@ -6,7 +6,7 @@
 
 <p>&nbsp;</p>
 
-
+### Let's install the NodeExporter on master1 node.
 
 ### Create a user for node_exporter
 ```
