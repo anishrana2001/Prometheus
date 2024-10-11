@@ -6,7 +6,7 @@ File service Discovery is used for static content.
 ### Create a Json file on master1 node. As per your requirement, you may populate the data inside the labels.
 
 ```
-echo "[
+echo '[
   {
     "labels": {
       "job": "node"
@@ -15,7 +15,7 @@ echo "[
       "192.168.1.32:9100"
     ]
   }
-] " >  /tmp/filesd.json
+]' >  /tmp/filesd.json
 ```
 ### Add the below lines in prometheus configuration file.
 ```
