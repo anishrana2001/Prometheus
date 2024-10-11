@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8b345fa9-6b0b-4bc0-a79a-a9017aa6f646)# HTTP Service Discover
+
 ### We will going to install the HTTP Service on our NGINX VM (192.168.1.7)
 ### For HTTP service, we will install the NGINX web server and then create a web page. In this web page, we will add the alert details.
 
