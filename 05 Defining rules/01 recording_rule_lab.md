@@ -33,12 +33,14 @@ vi /etc/prometheus/prometheus.yml
 global:
   scrape_interval: 15s 
   evaluation_interval: 15s 
+# Alertmanager configuration
 alerting:
   alertmanagers:
     - static_configs:
-        - targets: ["192.168.1.32:9093"]
+        - targets:
+          # - alertmanager:9093
 
-rule_files:                        ## Added
+rule_files:
   - "/etc/prometheus/rules/*"      ## Added
 ```
 ### Before reloading the Prometheus service, it would be worth to check the syntax error of our Prometheus configuration file.
