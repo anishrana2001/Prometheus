@@ -3,7 +3,7 @@
 File service Discovery is used for static content. 
 
 
-### Create a Json file. As per your requirement, you may populate the data inside the labels.
+### Create a Json file on master1 node. As per your requirement, you may populate the data inside the labels.
 
 ```
 echo "[
