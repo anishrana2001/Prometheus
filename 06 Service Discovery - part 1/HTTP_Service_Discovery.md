@@ -1,5 +1,5 @@
 
-### We will going to install the HTTP Service on our NGINX VM (192.168.1.7)
+### We will going to install the HTTP Service on our NGINX VM (192.168.1.8)
 ### For HTTP service, we will install the NGINX web server and then create a web page. In this web page, we will add the alert details.
 
 ### Before begin, let's create a directory "/data"
