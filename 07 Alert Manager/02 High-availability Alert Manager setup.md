@@ -95,6 +95,12 @@ sed -i '/ExecStart/ s/$/  --cluster.peer=192.168.1.33:9094/' /etc/systemd/system
 ```
 cat /etc/systemd/system/alertmanager.service
 ```
+
+### We can also check the Syntax of Alermanager config.
+```
+amtool check-config /etc/alertmanager/alertmanager.yml
+```
+
 ### Since, We did the modification in the service file, thus, need to reoload the daemon and then followed by alertmanager service restart.
 
 ```
