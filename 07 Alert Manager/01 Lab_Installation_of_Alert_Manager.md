@@ -206,3 +206,8 @@ systemctl restart alertmanager
 ```
 sudo killall -HUP alertmanager
 ```
+
+### Troubleshoting ...
+```
+journalctl -u alertmanager.service
+```
