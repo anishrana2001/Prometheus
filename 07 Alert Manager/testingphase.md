@@ -19,9 +19,12 @@ hostnamectl
 ```
 
 ### How to setup FQDN in Linux?
+```
 vi /etc/hosts
+```
+```
 192.168.1.8  workernode1.example.com workernode1
-
+```
 ### Configure domain name in Red Hat RHEL, Fedora and CentOS
 ```
 vi /etc/sysconfig/network
@@ -29,11 +32,10 @@ vi /etc/sysconfig/network
 ```
 DOMAINNAME=example.com
 ```
-
-
 ```
 vi /etc/sysctl.conf
 ```
+
 ```
 kernel.domainname = example.com
 ```
