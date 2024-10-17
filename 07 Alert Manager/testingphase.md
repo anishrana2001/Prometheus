@@ -282,9 +282,6 @@ cat > /etc/alertmanager/alertmanager.yml
 global:                       ## Added
   resolve_timeout: 10m        ## Added
   smtp_require_tls: true
-  http_config:
-    tls_config:
-      ca_file: /etc/ssl/private/ca.crt
 route:
   group_by: ['alertname']
   group_wait: 10s
@@ -296,17 +293,11 @@ receivers:
   - name: 'email-notifications'
     email_configs:
       - to: 'alertmanager-smtpuser@example.com'
-        from: 'alertmanager-smtpuser@example.com'
+        from: 'smtpuser@example.com'
         smarthost: 'workernode1.example.com:587'
-        auth_username: 'smtpuser'
-        auth_identity: 'smtpuser'
-        auth_password: 'Redhat123'
-inhibit_rules:
-  - source_match:
-      severity: 'critical'
-    target_match:
-      severity: 'warning'
-    equal: ['alertname', 'dev', 'instance']
+        auth_username: 'alertmanager-smtpuser'
+        auth_identity: 'alertmanager-smtpuser'
+        auth_password: 'Redhat@123'
 ```
 
 
