@@ -3,7 +3,7 @@
 ### First, ensure your system is up to date:
 
 ```
-dnf update
+dnf update -y
 ```
 ### How to setup the hostname?
 ```
