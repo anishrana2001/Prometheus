@@ -253,7 +253,7 @@ nc -vz 192.168.1.32 587
 
 ### Its time to configure the dovecot. 
 
-
+#### Open the dovecot main configuration file.
 ```
 vi /etc/dovecot/dovecot.conf
 ```
@@ -262,7 +262,7 @@ vi /etc/dovecot/dovecot.conf
 listen = *
 ```
 
-
+#### We need to modify 2 changes only.
 ```
 vi /etc/dovecot/conf.d/10-auth.conf
 ```
@@ -345,8 +345,17 @@ receivers:
         auth_identity: 'alertmanager-smtpuser'
         auth_password: 'Redhat@123'
 ```
+#### Restart the alertManager service.
+```
+systemctl restart alertmanager.service
+```
+```
+journalctl -u alertmanager.service 
+```
 
-
+```
+journalctl -u postfix.service 
+```
 #### Post checks for email notifications.
 ```
 ls -ltr /home/alertmanager-smtpuser/Maildir/new/
