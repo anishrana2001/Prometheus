@@ -138,20 +138,21 @@ nc -vz 192.168.1.32 25
 ```
 mkdir /etc/ssl/private/
 chmod 700 /etc/ssl/private/
+cd /etc/ssl/private/
 ```
 
 #### Create the CA key from openssl
 
 ```
-openssl genrsa -out ca.key 2048
+openssl genrsa -out /etc/ssl/private/ca.key 2048
 ```
 
 ```
-openssl req -new -x509 -days 365 -key ca.key -subj "/C=IN/ST=NEWDELHI/L=DEL/O=example, Inc./CN=example Root CA" -out ca.crt
+openssl req -new -x509 -days 365 -key ca.key -subj "/C=IN/ST=NEWDELHI/L=DEL/O=example, Inc./CN=example Root CA" -out /etc/ssl/private/ca.crt
 ```
 
 ```
-openssl req -newkey rsa:2048 -nodes -keyout /etc/ssl/private/mailserver.key  -subj "/C=IN/ST=NEWDELHI/L=DEL/O=example, Inc./CN=*.example Root CA"  -out server.csr
+openssl req -newkey rsa:2048 -nodes -keyout /etc/ssl/private/mailserver.key  -subj "/C=IN/ST=NEWDELHI/L=DEL/O=example, Inc./CN=*.example Root CA"  -out /etc/ssl/private/server.csr
 ```
 
 
