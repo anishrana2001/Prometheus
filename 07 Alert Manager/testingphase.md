@@ -240,7 +240,7 @@ vi /etc/dovecot/conf.d/10-master.conf
 ```
 #### line 107-109 : uncomment and add like follows
 ```
-  \# Postfix smtp-auth
+  # Postfix smtp-auth
   unix_listener /var/spool/postfix/private/auth {
     mode = 0666
     user = postfix
