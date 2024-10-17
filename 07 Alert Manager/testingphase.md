@@ -93,7 +93,40 @@ systemctl enable dovecot
 systemctl status dovecot
 ```
 
-#### Postchecks for Postfixs.
+#### Post checks for Postfixs. Ideally, it should not work as I haven't added curtail variables.
+```
+nc -vz 192.168.1.32 25
+```
+
+### Let's configure the Postfix configuration file. Firstly, take the backup of main configuration file. 
+
+```
+mv /etc/postfix/main.cf /etc/postfix/main.cf.bak1
+```
+
+#### Add the node name in the hostname variable so that we can use in the config file.
+```
+hostname=$(hostname -f)
+```
+#### Let's create a new Postfix configuration file.
+```
+sudo tee -a /etc/postfix/main.cf > /dev/null <<EOF
+myhostname = workernode1.example.com
+mydomain = example.com
+myorigin = \$mydomain
+inet_interfaces = all
+inet_protocols = all
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+mynetworks = 192.168.1.0/24, 127.0.0.0/8
+home_mailbox = Maildir/
+smtpd_banner = $myhostname ESMTP 
+EOF
+```
+#### Resart the POSTFIX service.
+```
+systemctl restart postfix
+```
+#### It's time for POST CHECK:
 ```
 nc -vz 192.168.1.32 25
 ```
@@ -136,14 +169,14 @@ hostname=$(hostname -f)
 ##### It's time to modify the Postfix configuration file. Easiest way to take the backup of original file and add our content. 
 
 ```
-sudo mv /etc/postfix/main.cf /etc/postfix/main.cf.bak
+sudo mv /etc/postfix/main.cf /etc/postfix/main.cf.bak1
 ```
 
 ```
 sudo tee -a /etc/postfix/main.cf > /dev/null <<EOF
 myhostname = workernode1.example.com
 mydomain = example.com
-myorigin = $mydomain
+myorigin = \$mydomain
 inet_interfaces = all
 inet_protocols = all
 mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
