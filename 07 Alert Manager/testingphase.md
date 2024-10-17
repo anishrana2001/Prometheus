@@ -211,42 +211,36 @@ nc -vz 192.168.1.32 587
 ```
 vi /etc/dovecot/dovecot.conf
 ```
-
+##### line 30 : uncomment (if not use IPv6, remove [::]). For me, I am not using IPV6, thus, I removed it.
 ```
-# line 30 : uncomment (if not use IPv6, remove [::]). For me, I am not using IPV6, thus, I removed it.
-
 listen = *
 ```
+
 
 ```
 vi /etc/dovecot/conf.d/10-auth.conf
 ```
+##### line 10 : uncomment and change (allow plain text auth). It should be like below:
+##### line 100 : add, like below:
 ```
-# line 10 : uncomment and change (allow plain text auth). It should be like below:
-
 disable_plaintext_auth = no
-
-# line 100 : add, like below:
-
 auth_mechanisms = plain login
 ```
 
 ```
 vi /etc/dovecot/conf.d/10-mail.conf
 ```
+#### line 30 : uncomment and add. It should be like below:
 ```
-# line 30 : uncomment and add. It should be like below:
-
 mail_location = maildir:~/Maildir
 ```
 
 ```
 vi /etc/dovecot/conf.d/10-master.conf
 ```
+#### line 107-109 : uncomment and add like follows
 ```
-# line 107-109 : uncomment and add like follows
-
-  # Postfix smtp-auth
+  \# Postfix smtp-auth
   unix_listener /var/spool/postfix/private/auth {
     mode = 0666
     user = postfix
@@ -257,9 +251,8 @@ vi /etc/dovecot/conf.d/10-master.conf
 ```
 vi /etc/dovecot/conf.d/10-ssl.conf
 ```
+#### line 8 : change (not require SSL)
 ```
-# line 8 : change (not require SSL)
-
 ssl = yes
 ```
 
@@ -273,11 +266,7 @@ systemctl restart dovecot
 journalctl -xeu dovecot.service
 ```
 
-```
-systemctl status alertmanager
-```
-
-#### Make sure to enable and restart the services.
+### Make sure to enable and restart the services.
 ```
 systemctl restart postfix ; systemctl restart dovecot 
 ```
