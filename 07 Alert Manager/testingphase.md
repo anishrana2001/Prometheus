@@ -160,6 +160,9 @@ openssl req -newkey rsa:2048 -nodes -keyout /etc/ssl/private/mailserver.key  -su
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:example.com,DNS:workernode1.example.com") -days 365 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out /etc/ssl/certs/mailserver.crt
 ```
 
+```
+ls -ltr
+```
 
 #### Add these certificate and keys on Postfix main.cf file.
 ### Create a new variable so that we can use this in the main.cf file.
@@ -216,6 +219,10 @@ sed -i 's/\#submission/submission/' /etc/postfix/master.cf
 ```
 
 #### Make sure that you have these lines added or modified under submission of master.cf file. Please note that main.cf file different then master.cf file.
+
+```
+vi /etc/postfix/master.cf
+```
 ```
 submission inet n       -       n       -       -       smtpd
   -o syslog_name=postfix/submission
@@ -232,6 +239,11 @@ submission inet n       -       n       -       -       smtpd
   -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
   -o milter_macro_daemon_name=ORIGINATING
 ```
+#### Restart the Postfix service.
+```
+systemctl restart postfix
+```
+
 
 #### Postchecks for Postfixs.
 ```
