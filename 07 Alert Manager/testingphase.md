@@ -49,18 +49,18 @@ dnsdomainname
 ```
 adduser alertmanager-smtpuser
 ```
+```
+echo "Redhat@123" | passwd "alertmanager-smtpuser" --stdin
+```
 
-```
-echo "Redhat123" | passwd "smtpuser" --stdin
-```
 #### Let's create another user.
 ```
 adduser smtpuser
 ```
+```
+echo "Redhat123" | passwd "smtpuser" --stdin
+```
 
-```
-echo "Redhat@123" | passwd "alertmanager-smtpuser" --stdin
-```
 
 ## Step 2: Install Postfix & Dovecot
 
