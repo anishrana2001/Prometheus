@@ -45,47 +45,50 @@ dnsdomainname
 ```
 
 ### Create a User and Set the Password. We will create 2 users, first user "alertmanager-smtpuser" will send the alerts through email and 2nd user "smtpuser" will receive the email notifications.
+
 ```
 adduser alertmanager-smtpuser
 ```
+
 ```
 echo "Redhat123" | passwd "smtpuser" --stdin
 ```
-
+#### Let's create another user.
 ```
 adduser smtpuser
 ```
+
 ```
 echo "Redhat@123" | passwd "alertmanager-smtpuser" --stdin
-
+```
 
 ## Step 2: Install Postfix & Dovecot
 
-### Install the Postfix mail server:
+#### Install the Postfix mail server:
 ```
 dnf install postfix cyrus-sasl-lib libsasl2* -y
 ```
-### Start and enable Postfix to run on boot:
+#### Start and enable Postfix to run on boot:
 ```
 systemctl start postfix
 systemctl enable postfix
 ```
-### Check the status of Postfix to ensure it’s running:
+#### Check the status of Postfix to ensure it’s running:
 ```
 systemctl status postfix
 ```
 
 ### Installation of Dovecot
-### Install Dovecot, which will handle the IMAP and POP3 services:
+#### Install Dovecot, which will handle the IMAP and POP3 services:
 ```
 dnf install dovecot -y
 ```
-### Start and enable Dovecot:
+#### Start and enable Dovecot:
 ```
 systemctl start dovecot
 systemctl enable dovecot
 ```
-### Check the status of Dovecot:
+#### Check the status of Dovecot:
 ```
 systemctl status dovecot
 ```
