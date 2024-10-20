@@ -1,6 +1,8 @@
 ## Lab for Grouping
+
+### I am going to create 3 rules, on which 2 rules will show inside a single group on AlertManager.
+
 ### In prometheus server under rule directory.
-### I am going to create 3 rules, on which 2 rules will show inside a single group.
 ```
 cat <<EOF>>  /etc/prometheus/rules/grouping-rule.yml
 groups:
