@@ -364,3 +364,76 @@ ls -ltr /home/alertmanager-smtpuser/Maildir/new/
 ```
 echo "This is a test email, 1" | mail -s "Test1 Postfix" alertmanager-smtpuser@example.com
 ```
+
+
+## How to enable the gmail account for email notification.
+
+### Step 1. Login to Gmail account and generate the "app password.
+### Step 2. Configure the AlertManager.
+### Step 3. Perform the post-checks.
+
+### Step 1:
+### To create an app password for Gmail, follow these steps:
+#### Ensure 2-Step Verification is Enabled: You need to have 2-Step Verification activated on your Google Account.
+#### Go to Your Google Account: Visit the Google Account page (https://myaccount.google.com/).
+#### Navigate to Security: On the left navigation panel, select "Security".
+#### In the search bar "app password"
+#### Follow the instructions and copy the password.
+
+### Step 2:
+#### Modify the AlertManager config.
+```
+cat > /etc/alertmanager/alertmanager.yml
+```
+
+```
+global:
+  resolve_timeout: 10m
+  smtp_require_tls: true
+route:
+     group_by: ['alertname']
+     group_wait: 10s
+     group_interval: 10s
+     repeat_interval: 10s
+     receiver: 'email-notifications'
+     routes:
+     - receiver: 'email-notifications'
+       continue: true                                              ## Added
+     - receiver: 'email-notifications-gmail'                       ## Added
+       continue: true                                              ## Added
+receivers:
+  - name: 'email-notifications'
+    email_configs:
+      - to: 'alertmanager-smtpuser@example.com'
+        from: 'smtpuser@example.com'
+        smarthost: 'workernode1.example.com:587'
+        auth_username: 'alertmanager-smtpuser'
+        auth_identity: 'alertmanager-smtpuser'
+        auth_password: 'Redhat@123'
+  - name: 'email-notifications-gmail'                              ## Added
+    email_configs:                                                 ## Added
+      - to: anishrana200101@gmail.com                              ## Added
+        from: anishrana200101@gmail.com                            ## Added
+        smarthost: smtp.gmail.com:587                              ## Added
+        auth_username: anishrana200101@gmail.com                   ## Added
+        auth_identity: anishrana200101@gmail.com                   ## Added
+        auth_password: your_Gmail_App_password_without_space'      ## Added 
+```
+
+#### Check the AlertManager's configuration file syntax.
+```
+amtool check-config /etc/alertmanager/alertmanager.yml
+```
+
+#### Restart the alertManager service.
+```
+systemctl restart alertmanager.service
+```
+```
+journalctl -u alertmanager.service 
+```
+
+### Step 3:
+#### Open the Gmail webpage and make sure you should receive the emails.
+#### Please note that we have also added the local SMTP server. Thus, we should also observe the email notification on our local user.
+
