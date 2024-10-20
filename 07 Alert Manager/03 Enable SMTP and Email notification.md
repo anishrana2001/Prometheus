@@ -366,7 +366,7 @@ echo "This is a test email, 1" | mail -s "Test1 Postfix" alertmanager-smtpuser@e
 ```
 
 
-## How to enable the gmail account for email notification.
+## How to enable the Gmail account for email notification.
 
 ### Step 1. Login to Gmail account and generate the "app password.
 ### Step 2. Configure the AlertManager.
