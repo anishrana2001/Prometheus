@@ -192,6 +192,16 @@ groups:
        summary: Server Downstream3 Down
 EOF
 ```
+
+### Check the Prometheus config syntax
+```
+promtool check config /etc/prometheus/prometheus.yml
+```
+
+### Reload Prometheus configuration to load the new configuration:
+```
+killall -HUP prometheus
+```
 ### Post check, Open the Prometheus GUI and click on "Alert". You must observe new alarms for upstream and downstream.
 
 ### Now, check the AlertManager and you will observe that all alarms. Let's suppress the unwanted alarms.
