@@ -23,7 +23,7 @@ hostnamectl
 vi /etc/hosts
 ```
 ```
-192.168.1.8  workernode1.example.com workernode1
+192.168.1.32  workernode1.example.com workernode1
 ```
 ### Configure domain name in Red Hat RHEL, Fedora and CentOS
 ```
