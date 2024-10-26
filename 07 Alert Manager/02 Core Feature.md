@@ -107,7 +107,7 @@ systemctl status alertmanager
 #### Let's change the web.hok name to webhook 
 
 ```
-cat > /etc/alertmanager/alertmanager.yml
+> /etc/alertmanager/alertmanager.yml
 ```
 ```
 cat <<EOF>> /etc/alertmanager/alertmanager.yml
@@ -128,7 +128,19 @@ receivers:
       - url: 'http://127.0.0.1:5001/'
 EOF
 ```
+### Check the AlertManager config Syntax
+```
+amtool check-config /etc/alertmanager/alertmanager.yml
+```
 
+
+### Restart the Alertmanager Service.
+```
+killall -HUP alertmanager 
+```
+```
+systemctl status alertmanager 
+```
 ## inhibit_rules --> Supress some alarms because main alarm is already firing. Router interface is down, thus, sub interfaces will be also down. We don't requires sub-interfaces alarms if we have main interface alarm.
 
 ### In the Prometheus server, create another rule file.
