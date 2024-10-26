@@ -101,7 +101,7 @@ nc -vz 192.168.1.32 25
 ### Let's configure the Postfix configuration file. Firstly, take the backup of main configuration file. 
 
 ```
-mv /etc/postfix/main.cf /etc/postfix/main.cf.bak1
+mv /etc/postfix/main.cf /etc/postfix/main.cf.back
 ```
 
 #### Add the node name in the hostname variable so that we can use in the config file.
@@ -173,7 +173,7 @@ hostname=$(hostname -f)
 ##### It's time to modify the Postfix configuration file. Easiest way to take the backup of original file and add our content. 
 
 ```
-sudo mv /etc/postfix/main.cf /etc/postfix/main.cf.bak1
+sudo mv /etc/postfix/main.cf /etc/postfix/main.cf.back1
 ```
 
 ```
