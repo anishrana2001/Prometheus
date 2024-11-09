@@ -32,7 +32,7 @@ systemctl status alertmanager.service | grep "Active: active (runn)"
 echo $?
 ```
 
-### Let's include, if and else statement. If return code is "0" then it should print "alertmanager.service 1" else it print "alertmanager.service 0". In Prometheus "up" metric, we get to know that 1  means up and 0 means down.
+### Let's include, if and else statement. If return code is "0" then it should print "alertmanager_service 1" else it print "alertmanager_service 0". In Prometheus "up" metric, we get to know that 1  means up and 0 means down.
 ```
 systemctl status alertmanager.service | grep "Active: active (running)" ; if [ $? -eq 0 ];then echo "alertmanager.service 1" ; else echo "alertmanager.service 0" ; fi 
 ```
@@ -139,4 +139,8 @@ echo "0" >  file1.txt
 
 ```
 backup_value=`cat file1.txt` ; if [ $backup_value -eq 0 ];then echo "Backup_status 1" ; else echo "Backup_status 0" ; fi
+```
+
+```
+backup_value=`cat file1.txt` ; if [ $backup_value -eq 0 ];then echo "Backup_status 1" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/backup1/ ; else echo "Backup_status 0" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/backup1/ ; fi
 ```
