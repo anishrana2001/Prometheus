@@ -32,9 +32,9 @@ systemctl status alertmanager.service | grep "Active: active (runn)"
 echo $?
 ```
 
-### Let's include, if and else statement. If return code is "0" then it should print "alertmanager.service 0" else it print "alertmanager.service 1". In Prometheus "up" metric, we get to know that 0 is means up and 1 means down.
+### Let's include, if and else statement. If return code is "0" then it should print "alertmanager.service 1" else it print "alertmanager.service 0". In Prometheus "up" metric, we get to know that 1  means up and 0 means down.
 ```
-systemctl status alertmanager.service | grep "Active: active (running)" ; if [ $? -eq 0 ];then echo "alertmanager.service 0" ; else echo "alertmanager.service 1" ; fi 
+systemctl status alertmanager.service | grep "Active: active (running)" ; if [ $? -eq 0 ];then echo "alertmanager.service 1" ; else echo "alertmanager.service 0" ; fi 
 ```
 ### One can observe that we are also getting command output and if & else output. Let's suppress the command output with the help of "q" option in grep command.
 ### -q, --quiet, --silent
@@ -42,11 +42,11 @@ systemctl status alertmanager.service | grep "Active: active (running)" ; if [ $
 ###      match is found, even if an error was detected.  Also see the -s or --no-messages option.
 
 ```
-systemctl status alertmanager.service | grep -q "Active: active (running)" ; if [ $? -eq 0 ];then echo "alertmanager.service 0" ; else echo "alertmanager.service 1" ; fi 
+systemctl status alertmanager.service | grep -q "Active: active (running)" ; if [ $? -eq 0 ];then echo "alertmanager_service 1" ; else echo "alertmanager.service 0" ; fi 
 ```
 
 ```
-systemctl status alertmanager.service | grep "Active: active (running)"  > /dev/null; if [ $? -eq 0 ];then echo "alertmanager.service" ; else echo "alertmanager.service 1" ; fi 
+systemctl status alertmanager.service | grep "Active: active (running)"  > /dev/null; if [ $? -eq 0 ];then echo "alertmanager_service 1" ; else echo "alertmanager.service 0" ; fi 
 ```
 ### Let's stop the service.
 
@@ -55,12 +55,12 @@ systemctl stop alertmanager.service
 ```
 
 ```
-systemctl status alertmanager.service | grep "Active: active (running)" ; if [ $? -eq 0 ];then echo "alertmanager.service 0" ; else echo "alertmanager.service 1" ; fi
+systemctl status alertmanager.service | grep "Active: active (running)" ; if [ $? -eq 0 ];then echo "alertmanager.service 1" ; else echo "alertmanager.service 0" ; fi
 ```
 
 
 ```
-systemctl status alertmanager.service | grep "Active: active (running)"  > /dev/null; if [ $? -eq 0 ];then echo "alertmanager_service 0" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; else echo "alertmanager_service 1" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; fi
+systemctl status alertmanager.service | grep "Active: active (running)"  > /dev/null; if [ $? -eq 0 ];then echo "alertmanager_service 1" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; else echo "alertmanager_service 0" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; fi
 ```
 
 ### Post checks!
@@ -87,7 +87,7 @@ systemctl start alertmanager.service
 ```
 
 ```
-systemctl status alertmanager.service | grep "Active: active (running)"  > /dev/null; if [ $? -eq 0 ];then echo "alertmanager_service 0" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; else echo "alertmanager_service 1" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; fi
+systemctl status alertmanager.service | grep "Active: active (running)"  > /dev/null; if [ $? -eq 0 ];then echo "alertmanager_service 1" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; else echo "alertmanager_service 0" | curl --data-binary @- http://192.168.1.33:9091/metrics/job/alertmanager/ ; fi
 ```
 ### Post checks!
 
@@ -130,7 +130,7 @@ echo $backup_value
 ```
 
 ```
-backup_value=`cat file1.txt` ; if [ $backup_value -eq 0 ];then echo "Backup_status 0" ; else echo "Backup_status 1" ; fi
+backup_value=`cat file1.txt` ; if [ $backup_value -eq 0 ];then echo "Backup_status 1" ; else echo "Backup_status 0" ; fi
 ```
 
 ```
@@ -138,5 +138,5 @@ echo "0" >  file1.txt
 ```
 
 ```
-backup_value=`cat file1.txt` ; if [ $backup_value -eq 0 ];then echo "Backup_status 0" ; else echo "Backup_status 1" ; fi
+backup_value=`cat file1.txt` ; if [ $backup_value -eq 0 ];then echo "Backup_status 1" ; else echo "Backup_status 0" ; fi
 ```
