@@ -7,6 +7,3 @@
 ## 06. Uninstall the pushgateway from workernode2.
 ## 07. Uninstall the NodeExporter from nodes (master and workernode1)
 ## 08. Uninstall the Prometheus from master node.
-# 
-# 
-
