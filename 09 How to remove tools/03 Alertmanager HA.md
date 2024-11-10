@@ -32,7 +32,7 @@ sh /data/uninstall-alertmanager-HA.sh
 rm -rf /data/uninstall-alertmanager-HA.sh
 ```
 
-### It's time to clean the Prometheus server configuration file.
+### It's time to clean the Prometheus server configuration file. Login into master node where I have installed the Prometheus (192.168.1.31)
 
 ```
 vi /etc/prometheus/prometheus.yml
