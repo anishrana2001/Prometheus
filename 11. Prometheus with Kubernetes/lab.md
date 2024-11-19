@@ -422,13 +422,12 @@ servicemonitor.monitoring.coreos.com/prometheus-kube-prometheus-kube-scheduler e
 ```
 helm uninstall mongodb-exporter -n prometheus-monitoring
 ```
-
-
+### Post checks, we can check the pods.
 ```
 kubectl -n prometheus-monitoring get pods | grep mongo
 ```
 
-### Need to delete the service also. First, identify the servicemonitor name.
+### Need to delete the servicemonitor. First, identify the servicemonitor name.
 ```
 kubectl -n prometheus-monitoring get servicemonitors.monitoring.coreos.com 
 ```
@@ -445,7 +444,9 @@ kubectl -n prometheus-monitoring get service
 ```
 kubectl -n prometheus-monitoring delete service mongodb-exporter-ext
 ```
-
+## Remove the value.yaml file that we created when we install the mongodb.
+```
+rm -rf  /data/mongo_value.yaml
 
 ### How to uninstall the Prometheus from stack?
 ```
