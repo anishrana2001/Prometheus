@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b897cfcf-fc9a-41bd-a28c-6c3b1adb119d)# Course Content:
+# Course Content:
 
 ##	1. Basic understanding of Kubernetes 
 ##	2. Helm
