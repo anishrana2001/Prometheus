@@ -168,6 +168,7 @@ I am using calico for networking. This Prometheus stack, identify it and create 
 ```
 kubectl -n prometheus-monitoring get crd | grep -i coreos.com
 ```
+```html
 CoreOS was a company and a set of technologies focused on improving the security, reliability, and scalability of internet infrastructure through containerization and orchestration.
 Key Technologies and Contributions:
 CoreOS Container Linux:
@@ -175,7 +176,7 @@ etcd
 Flannel
 Tectonic: An enterprise Kubernetes platform that included additional features for security, monitoring, and management.
 Quay: A private container registry that allows users to store, build, and deploy container images securely. It includes features like image scanning and repository mirroring.
-
+```
 The prometheuses.monitoring.coreos.com is a Custom Resource Definition (CRD) used by the Prometheus Operator, which is a tool developed by CoreOS (now part of Red Hat) to simplify the deployment and management of Prometheus instances on Kubernetes.
 
 
