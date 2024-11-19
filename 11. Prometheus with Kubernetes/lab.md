@@ -159,9 +159,28 @@ kubectl -n prometheus-monitoring get pods
 ```
 kubectl -n prometheus-monitoring get servicemonitors.monitoring.coreos.com 
 ```
+### Once can observe that there are two types of CRDs (Custom Resource Definition).
+```
+kubectl -n prometheus-monitoring get crd | grep -v coreos.com
+```
+I am using calico for networking. This Prometheus stack, identify it and create these networkpolicies for us. For an example, the globalnetworkpolicies.crd.projectcalico.org is a Custom Resource Definition (CRD) used by Project Calico, a popular open-source networking and network security solution for containers, virtual machines, and native host-based workloads. This CRD defines the schema for Global Network Policies in Calico.
 
 ```
-kubectl -n prometheus-monitoring describe ServiceMonitor prometheus-kube-prometheus-operator
+kubectl -n prometheus-monitoring get crd | grep -i coreos.com
+```
+CoreOS was a company and a set of technologies focused on improving the security, reliability, and scalability of internet infrastructure through containerization and orchestration.
+Key Technologies and Contributions:
+CoreOS Container Linux:
+etcd
+Flannel
+Tectonic: An enterprise Kubernetes platform that included additional features for security, monitoring, and management.
+Quay: A private container registry that allows users to store, build, and deploy container images securely. It includes features like image scanning and repository mirroring.
+
+The prometheuses.monitoring.coreos.com is a Custom Resource Definition (CRD) used by the Prometheus Operator, which is a tool developed by CoreOS (now part of Red Hat) to simplify the deployment and management of Prometheus instances on Kubernetes.
+
+
+```
+kubectl -n prometheus-monitoring describe ServiceMonitor prometheuses.monitoring.coreos.com
 ```
 
 ### How to restart the NodeManager service?
