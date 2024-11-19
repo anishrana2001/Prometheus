@@ -1,17 +1,17 @@
 # Course Content:
 
-##	1. Basic understanding of Kubernetes 
-##	2. Helm
-##	3. Install prometheus-community/kube-prometheus-stack
-##	4. Inspect all the components one by one.
-##		a. Service
-##		b. configMaps
-##		c. Secrets
-##	5. How to open the GUI and demonstrate the tabs
-##		a. Prometheus 
-##		b. AlertManager
-##		c. PushGateway
-##  6. Install MongoDB Exporter
+1. Basic understanding of Kubernetes 
+2. Helm
+3. Install prometheus-community/kube-prometheus-stack
+4. Inspect all the components one by one.
+	a. Service
+	b. configMaps
+	c. Secrets
+5. How to open the GUI and demonstrate the tabs
+	a. Prometheus 
+	b. AlertManager
+	c. PushGateway
+6. Install MongoDB Exporter
 
 
 
