@@ -347,7 +347,7 @@ http://192.168.1.31:30144/targets?search=
 ```
 
 
-```
+
 
 ```
 kubectl get pods -n kube-system --show-labels | grep etcd
