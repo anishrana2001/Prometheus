@@ -26,13 +26,7 @@ chmod 700 get_helm.sh
 ### How to add the GIT binary into our local Path?
 
 ```
-[root@master1 ~]# pwd
-/root
-vi .bashrc
-```
-
-```
-vi .bashrc
+vi /root/.bashrc
 ```
 ```
 PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH"
