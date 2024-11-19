@@ -472,6 +472,14 @@ kubectl -n prometheus-monitoring delete service/alertmanager-server-ext service/
 kubectl delete namespaces prometheus-monitoring 
 ```
 
+### How to remove the helm repo ?
+
+```
+/usr/local/bin/helm repo list 
+```
+```
+/usr/local/bin/helm repo remove prometheus-community
+```
 
 
 
