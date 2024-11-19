@@ -123,27 +123,38 @@ kubectl -n prometheus-monitoring describe cm prometheus-prometheus-kube-promethe
 ```
 
 
-### How to modify cm (configMap)?
+### How to add new custom rules?
+```
+vi /data/values.yaml
+```
+### Search for "additionalPrometheusRulesMap" and add below lines. 
+```
+additionalPrometheusRulesMap:
+  custom-rules:
+    groups:
+    - name: example.test-anish
+      rules:
+      - alert: ServerDownupstream 1
+        expr: 1
+        annotations:
+          summary: Server Upstream1 Down
+        labels:
+          severity: critical
+          service: app
+          env: dev
+```
+### This time, we will use "upgrade" sub-command with helm.
+```
+helm upgrade --install prometheus prometheus-community/kube-prometheus-stack -f values.yaml --namespace prometheus-monitoring
+```
 
-```
-kubectl -n prometheus-monitoring edit cm prometheus-prometheus-kube-prometheus-prometheus-rulefiles-0
-```
 
 ### Check the pods:
 ```
 kubectl -n prometheus-monitoring get pods
 ```
-```
-kubectl -n prometheus-monitoring get statefulsets.apps 
-```
-### If we do any modification, then we need to restart the prometheus.
-```
-kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
-```
+### Post checks, check the Prometheus GUI and AlertManager GUI.
 
-```
-kubectl -n prometheus-monitoring get pods
-```
 ### How to list servicemonitors (CRD)
 ```
 kubectl -n prometheus-monitoring get servicemonitors.monitoring.coreos.com 
