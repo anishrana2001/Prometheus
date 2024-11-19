@@ -418,7 +418,59 @@ servicemonitor.monitoring.coreos.com/prometheus-kube-prometheus-kube-scheduler e
 [root@master1 ~]# kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
 ```
 
+## How to uninstall the MongoDb exporter?
+```
+helm uninstall mongodb-exporter -n prometheus-monitoring
+```
 
+
+```
+kubectl -n prometheus-monitoring get pods | grep mongo
+```
+
+### Need to delete the service also. First, identify the servicemonitor name.
+```
+kubectl -n prometheus-monitoring get servicemonitors.monitoring.coreos.com 
+```
+
+```
+kubectl -n prometheus-monitoring delete servicemonitors.monitoring.coreos.com mongodb-exporter-prometheus-mongodb-exporter
+```
+
+### Also, need to delete the service. Identify the service name. 
+```
+kubectl -n prometheus-monitoring get service
+```
+
+```
+kubectl -n prometheus-monitoring delete service mongodb-exporter-ext
+```
+
+
+### How to uninstall the Prometheus from stack?
+```
+helm uninstall prometheus -n prometheus-monitoring
+```
+### You will observe that all the servicemonitors deleted. Because it was created by Helm. 
+```
+kubectl -n prometheus-monitoring get servicemonitors.monitoring.coreos.com 
+```
+
+### Check the services
+```
+kubectl -n prometheus-monitoring get service
+```
+
+### Let's delete these remaining services.
+```
+kubectl -n prometheus-monitoring delete service/alertmanager-server-ext service/prometheus-server-ext
+```
+
+
+### How to delete the namespace?
+```
+kubectl delete namespaces prometheus-monitoring 
+```
 
 
 
