@@ -255,7 +255,7 @@ EOF
 ```
 ### Let's install the mongodb expoter with these values.
 ```
-helm install mongodb-exporter prometheus-community/prometheus-mongodb-exporter -f mongo_value.yaml  --n prometheus-monitoring 
+helm install mongodb-exporter prometheus-community/prometheus-mongodb-exporter -f mongo_value.yaml  -n prometheus-monitoring 
 ```
 ###  Check the mongodb pods, services, deployment
 ```
