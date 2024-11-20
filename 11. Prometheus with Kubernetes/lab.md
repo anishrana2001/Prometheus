@@ -494,7 +494,7 @@ kubectl -n prometheus-monitoring delete service mongodb-exporter-ext
 ## Remove the value.yaml file that we created when we install the mongodb.
 ```
 rm -rf  /data/mongo_value.yaml
-
+```
 ### How to uninstall the Prometheus from stack?
 ```
 helm uninstall prometheus -n prometheus-monitoring
