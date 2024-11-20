@@ -325,147 +325,65 @@ kubectl -n prometheus-monitoring rollout restart statefulset prometheus-promethe
 ### Check  the Prometheus GUI 
 
 
-### Just for your information 
+### Search for "prometheus-kube-prometheus-kube" in the target option. You will observe that some services are not working or status is down.
 
+### For kube-controller-manager
+### We know that this pod is created statically. We need to updat the static yaml file and change the IP "127.0.0.1" to "0.0.0.0".
 ```
-kubectl -n prometheus-monitoring get Prometheus prometheus-kube-prometheus-prometheus -o yaml
+vi /etc/kubernetes/manifests/kube-controller-manager.yaml
 ```
+```
+kubectl -n kube-system get pods/kube-controller-manager-master1.example.com -o yaml
+```
+## Post check, Let's check the Prometheus GUI.
 
+### Same treatment for kube-scheduler.
 ```
-kubectl get pods -n kube-system --show-labels | grep controller
+vi /etc/kubernetes/manifests/kube-scheduler.yaml
 ```
-
 ```
-[root@master1 ~]# kubectl get pods -n kube-system --show-labels | grep controller
-calico-kube-controllers-658d97c59c-qb5vq      1/1     Running   36 (12h ago)   93d     k8s-app=calico-kube-controllers,pod-template-hash=658d97c59c
-calico-node-58nw8                             1/1     Running   32 (12h ago)   93d     controller-revision-hash=574c44bccd,k8s-app=calico-node,pod-template-generation=1
+kubectl -n kube-system get pods/kube-scheduler-master1.example.com -o yaml
 ```
-
-```
-kubectl -n prometheus-monitoring edit servicemonitors.monitoring.coreos.com prometheus-kube-prometheus-kube-controller-manager
-```
-
-```
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  annotations:
-    meta.helm.sh/release-name: prometheus
-    meta.helm.sh/release-namespace: prometheus-monitoring
-  creationTimestamp: "2024-11-10T13:34:33Z"
-  generation: 2
-  labels:
-    app: kube-prometheus-stack-kube-controller-manager
-    app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 66.1.0
-    chart: kube-prometheus-stack-66.1.0
-    heritage: Helm
-    release: prometheus
-  name: prometheus-kube-prometheus-kube-controller-manager
-  namespace: prometheus-monitoring
-  resourceVersion: "1010213"
-  uid: ae605ff7-820b-466c-9318-7c72d24dfbcf
-spec:
-  endpoints:
-  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-    port: http-metrics
-    scheme: https
-    tlsConfig:
-      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-      insecureSkipVerify: true
-  jobLabel: jobLabel
-  namespaceSelector:
-    matchNames:
-    - kube-system
-  selector:
-    matchLabels:
-      app: kube-prometheus-stack-kube-controller-manager
-      k8s-app: calico-kube-controllers
-      release: prometheus
-```
-
-```
-kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
-```
-
-```
-http://192.168.1.31:30144/targets?search=
-```
+## Post check, Let's check the Prometheus GUI.
 
 
+### For kube-proxy, there is no satic pod. Actually, it is being managed by daemmonset and all the configuration are stored on ConfigMap. Thus, we have to modify the configMap and then restart the daemonSet.
+```
+kubectl -n kube-system get cm
+```
+```
+kubectl -n kube-system edit configmaps kube-proxy
+```
+```
+look for "metricsBindAddress"
+metricsBindAddress: 0.0.0.0:10249
+```
+```
+kubectl -n kube-system get all
+```
+```
+kubectl -n kube-system rollout restart daemonset.apps/kube-proxy
+```
+## Post check, Let's check the Prometheus GUI.
+# :
 
+### For etcd, we just need to change the IP "127.0.0.1" to 0.0.0.0 for only "--listen-metrics-urls"
+```
+[root@master1 data]# cat /etc/kubernetes/manifests/etcd.yaml | grep listen-metrics-urls
+    - --listen-metrics-urls=http://127.0.0.1:2381
 
-```
-kubectl get pods -n kube-system --show-labels | grep etcd
-```
-
-```
-kubectl -n prometheus-monitoring edit servicemonitors.monitoring.coreos.com prometheus-kube-prometheus-kube-etcd
-```
-
-```
-kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
-```
-
-```
-kubectl get pods -n kube-system --show-labels | grep proxy
-```
-
-```
-[root@master1 ~]# kubectl get pods -n kube-system --show-labels | grep etcd
-etcd-master1.example.com                      1/1     Running   37 (12h ago)   93d     component=etcd,tier=control-plane
-[root@master1 ~]# kubectl -n prometheus-monitoring edit servicemonitors.monitoring.coreos.com prometheus-kube-prometheus-kube-etcd
-servicemonitor.monitoring.coreos.com/prometheus-kube-prometheus-kube-etcd edited
-[root@master1 ~]#  kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
-statefulset.apps/prometheus-prometheus-kube-prometheus-prometheus restarted
-[root@master1 ~]# 
-[root@master1 ~]# 
-[root@master1 ~]# kubectl get pods -n kube-system --show-labels | grep proxy
-kube-proxy-fmfkc                              1/1     Running   36 (12h ago)   93d     controller-revision-hash=744b5455d5,k8s-app=kube-proxy,pod-template-generation=1
-kube-proxy-gq66f                              1/1     Running   31 (12h ago)   93d     controller-revision-hash=744b5455d5,k8s-app=kube-proxy,pod-template-generation=1
-kube-proxy-m8p7b                              1/1     Running   36 (12h ago)   93d     controller-revision-hash=744b5455d5,k8s-app=kube-proxy,pod-template-generation=1
-```
-
-```
-kubectl -n prometheus-monitoring edit servicemonitors.monitoring.coreos.com prometheus-kube-prometheus-kube-proxy
+[root@master1 data]# cat /etc/kubernetes/manifests/etcd.yaml | grep listen-metrics-urls
+    - --listen-metrics-urls=http://0.0.0.0:2381
 ```
 ```
-kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
+vi /etc/kubernetes/manifests/etcd.yaml
 ```
+### After updating the etcd pod yaml file, we have to wait.
 ```
-kubectl get pods -n kube-system --show-labels | grep scheduler
+kubectl get nodes
 ```
-
-
-```
-[root@master1 ~]# kubectl -n prometheus-monitoring edit servicemonitors.monitoring.coreos.com prometheus-kube-prometheus-kube-proxy
-servicemonitor.monitoring.coreos.com/prometheus-kube-prometheus-kube-proxy edited
-[root@master1 ~]# kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
-
-[root@master1 ~]# kubectl get pods -n kube-system --show-labels | grep scheduler
-kube-scheduler-master1.example.com            1/1     Running   130 (8h ago)   93d     component=kube-scheduler,tier=control-plane
-```
-
-```
-kubectl -n prometheus-monitoring edit servicemonitors.monitoring.coreos.com prometheus-kube-prometheus-kube-scheduler
-```
-
-```
-kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
-```
-```
-kubectl get pods -n kube-system --show-labels | grep scheduler
-```
-
-
-```
-[root@master1 ~]# kubectl -n prometheus-monitoring edit servicemonitors.monitoring.coreos.com prometheus-kube-prometheus-kube-scheduler
-servicemonitor.monitoring.coreos.com/prometheus-kube-prometheus-kube-scheduler edited
-[root@master1 ~]# kubectl -n prometheus-monitoring rollout restart statefulset prometheus-prometheus-kube-prometheus-prometheus
-```
-
+## Post check, Let's check the Prometheus GUI.
+# : 
 ## How to uninstall the MongoDb exporter?
 ```
 helm uninstall mongodb-exporter -n prometheus-monitoring
