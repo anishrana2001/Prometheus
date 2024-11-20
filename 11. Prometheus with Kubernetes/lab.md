@@ -262,11 +262,20 @@ helm install mongodb-exporter prometheus-community/prometheus-mongodb-exporter -
 kubectl -n prometheus-monitoring get deployments.apps,svc,pods | grep mongo 
 ```
 
+```
+kubectl -n prometheus-monitoring get svc
+```
+
 ### Expose the monogdb service, like we did for prometheus and alertManager.
 ```
 kubectl -n prometheus-monitoring expose service mongodb-exporter-prometheus-mongodb-exporter --type=NodePort --target-port=9216 --name=mongodb-exporter-ext
 ```
-
+### Check the dynamci port number.
+```
+[root@master1 data]# kubectl -n prometheus-monitoring get svc mongodb-exporter-ext exposed
+NAME                   TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+mongodb-exporter-ext   NodePort   10.99.134.172   <none>        9216:31325/TCP   12s
+```
 
 ### Open the Browser and check the MongoDB URI.
 ```
