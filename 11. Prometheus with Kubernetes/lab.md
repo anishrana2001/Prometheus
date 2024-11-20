@@ -18,6 +18,7 @@
 ### How to install the GIT and then enable Helm?
 
 ```
+mkdir /data ; cd /data
 yum install -y git
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod 700 get_helm.sh 
@@ -499,6 +500,11 @@ rm -rf  /data/mongo_value.yaml
 ```
 helm uninstall prometheus -n prometheus-monitoring
 ```
+
+```
+rm -rf /data/values.yaml
+```
+
 ### You will observe that all the servicemonitors deleted. Because it was created by Helm. 
 ```
 kubectl -n prometheus-monitoring get servicemonitors.monitoring.coreos.com 
@@ -528,6 +534,7 @@ kubectl delete namespaces prometheus-monitoring
 ```
 /usr/local/bin/helm repo remove prometheus-community
 ```
-
+```
+rm -rf /data/get_helm.sh
 
 
