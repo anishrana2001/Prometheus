@@ -198,7 +198,7 @@ tool developed by CoreOS (now part of Red Hat) to simplify the deployment and ma
 kubectl -n prometheus-monitoring describe ServiceMonitor prometheuses.monitoring.coreos.com
 ```
 
-### How to restart the NodeManager service?
+### How to restart the NodeExporter service?
 
 
 ```
