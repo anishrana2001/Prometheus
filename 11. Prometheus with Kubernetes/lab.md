@@ -226,17 +226,7 @@ kubectl -n prometheus-monitoring rollout restart ds prometheus-prometheus-node-e
 helm show values prometheus-community/prometheus-mongodb-exporter > mongo_value.yaml
 ```
 
-### Need to remove.
-```
-cat <<EOF> mongo_value.yaml 
-mongodb:
-  uri: "mongodb://mongodb-service-app:27017"
 
-
-serviceMonitor:
-  additionalLabels:
-    release: Prometheus
-```
 ### Add these values as we will going to install mongodb exporter on namespace "prometheus-monitoring" and add the release label, it is important.
 ```
 cat <<EOF>> mongo_value.yaml 
