@@ -327,7 +327,10 @@ kubectl -n prometheus-monitoring rollout restart statefulset prometheus-promethe
 
 ### Search for "prometheus-kube-prometheus-kube" in the target option. You will observe that some services are not working or status is down.
 
-### For kube-controller-manager
+![image](https://github.com/user-attachments/assets/b459c9f4-0269-48be-8047-ecd37cd617a2)
+
+##
+### How to resolve these problems. For kube-controller-manager
 ### We know that this pod is created statically. We need to updat the static yaml file and change the IP "127.0.0.1" to "0.0.0.0".
 ```
 vi /etc/kubernetes/manifests/kube-controller-manager.yaml
@@ -345,7 +348,9 @@ vi /etc/kubernetes/manifests/kube-scheduler.yaml
 kubectl -n kube-system get pods/kube-scheduler-master1.example.com -o yaml
 ```
 ## Post check, Let's check the Prometheus GUI.
-
+```
+var=`kubectl -n prometheus-monitoring get svc prometheus-server-ext| awk -F ":"  '/9090/ {print $2}' | cut -d "/" -f1`; echo "http://192.168.1.31:$var"
+```
 
 ### For kube-proxy, there is no satic pod. Actually, it is being managed by daemmonset and all the configuration are stored on ConfigMap. Thus, we have to modify the configMap and then restart the daemonSet.
 ```
@@ -365,7 +370,9 @@ kubectl -n kube-system get all
 kubectl -n kube-system rollout restart daemonset.apps/kube-proxy
 ```
 ## Post check, Let's check the Prometheus GUI.
-# :
+```
+var=`kubectl -n prometheus-monitoring get svc prometheus-server-ext| awk -F ":"  '/9090/ {print $2}' | cut -d "/" -f1`; echo "http://192.168.1.31:$var"
+```
 
 ### For etcd, we just need to change the IP "127.0.0.1" to 0.0.0.0 for only "--listen-metrics-urls"
 ```
@@ -383,7 +390,10 @@ vi /etc/kubernetes/manifests/etcd.yaml
 kubectl get nodes
 ```
 ## Post check, Let's check the Prometheus GUI.
-# : 
+```
+var=`kubectl -n prometheus-monitoring get svc prometheus-server-ext| awk -F ":"  '/9090/ {print $2}' | cut -d "/" -f1`; echo "http://192.168.1.31:$var"
+```
+
 ## How to uninstall the MongoDb exporter?
 ```
 helm uninstall mongodb-exporter -n prometheus-monitoring
