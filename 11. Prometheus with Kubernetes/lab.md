@@ -202,7 +202,7 @@ kubectl -n prometheus-monitoring describe ServiceMonitor prometheuses.monitoring
 
 
 ```
-kubectl -n prometheus-monitoring rollout restart ds prometheus-prometheus-node-exporter -n prometheus-monitoring
+kubectl -n prometheus-monitoring rollout restart ds prometheus-prometheus-node-exporter 
 ```
 
 
