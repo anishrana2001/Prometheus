@@ -22,7 +22,10 @@ EOF
 chmod 755 /data/uninstall-http-service.sh
 sh /data/uninstall-http-service.sh
 ```
-
+### Remove the uninstall file.
+```
+rm -rf /data/uninstall-http-service.sh
+```
 
 ### It's time to clean the Prometheus server configuration file.
 
