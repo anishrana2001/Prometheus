@@ -147,7 +147,7 @@ systemctl status alertmanager
 ### In the Prometheus server, create another rule file.
 
 ```
-cat <<EOF>> inhibit_rules.yml
+cat <<EOF>> /etc/prometheus/rules/inhibit_rules.yml
 groups:
 - name: test-alerts
   rules:
