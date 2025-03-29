@@ -86,7 +86,10 @@ ExecStart=/usr/local/bin/alertmanager  --config.file /etc/alertmanager/alertmana
 WantedBy=multi-user.target
 EOF
 ```
-
+### As we have created a new service, thus, we have reload the dameon.
+```
+sudo systemctl daemon-reload
+```
 ### Start and enable the alertmanager service:
 
 ```
