@@ -65,6 +65,12 @@ ExecStart=/usr/local/bin/pushgateway
 WantedBy=multi-user.target
 EOF
 ```
+
+### As we have created a new service, thus, we have reload the dameon.
+```
+sudo systemctl daemon-reload
+```
+
 ###  Start and enable the pushgateway service:
 ```
 sudo systemctl enable pushgateway
