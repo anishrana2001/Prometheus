@@ -1,3 +1,4 @@
+### Perform the Lab on 192.168.1.32 VM
 ## To set up password authentication for your SMTP server (using Postfix) so that AlertManager can send emails securely, follow these steps:
 ### Step 1: Update Your System
 ### First, ensure your system is up to date:
