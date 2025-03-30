@@ -184,10 +184,10 @@ mydomain = example.com
 myorigin = \$mydomain
 inet_interfaces = all
 inet_protocols = all
-mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain
 mynetworks = 192.168.1.0/24, 127.0.0.0/8
 home_mailbox = Maildir/
-smtpd_banner = $myhostname ESMTP 
+smtpd_banner = \$myhostname ESMTP 
 
 # Additional STARTTLS configuration settings
 tls_random_source=dev:/dev/urandom
