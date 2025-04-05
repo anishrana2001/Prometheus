@@ -20,7 +20,16 @@ rm -rf /usr/local/bin/amtool
 rm -rf /data/alertmanager-0.27.0.linux-amd64.tar.gz
 rm -rf /data/alertmanager-installation.sh
 rm -rf /data/alertmanager-0.27.0.linux-amd64
+systemctl stop postfix
 userdel alertmanager
+cd /etc/postfix/
+rm -rf /etc/postfix/*
+yum remove postfix  -y
+rm -rf /etc/ssl/*
+systemctl stop dovecot
+yum remove  dovecot -y
+userdel alertmanager-smtpuser
+userdel smtpuser
 EOF
 ```
 
