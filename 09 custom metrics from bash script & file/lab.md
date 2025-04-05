@@ -1,3 +1,4 @@
+##$ Login into workernode2 (192.168.1.33) and make sure Pushgateway is installed on this node.
 # How to create custom metrics?
 
 ## How to Create custom metrics with the help of bash script?
