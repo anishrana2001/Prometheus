@@ -1,4 +1,4 @@
-### Primary prometheus server
+### Primary prometheus server :: # Note: Login into the Workernode1 server (192.168.1.32).
 ### allow root user to login from ssh connection
 
 ```
