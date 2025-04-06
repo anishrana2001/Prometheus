@@ -16,6 +16,7 @@ rm -rf /var/lib/prometheus
 rm -rf /usr/local/bin/promtool
 rm -rf /usr/local/bin/prometheus
 cd /data
+rm -rf prometheus-federation.sh
 rm -rf /data/prometheus-2.52.0.linux-amd64.tar.gz
 rm -rf /data/prometheus-2.52.0.linux-amd64
 userdel prometheus
