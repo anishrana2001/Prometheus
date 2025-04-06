@@ -20,6 +20,7 @@ rm -rf /data/alertmanager-0.27.0.linux-amd64.tar.gz
 rm -rf /data/alertmanager-installation.sh
 rm -rf /data/alertmanager-0.27.0.linux-amd64
 userdel alertmanager
+systemctl daemon-reload
 EOF
 ```
 
