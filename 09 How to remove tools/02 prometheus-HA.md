@@ -21,6 +21,7 @@ rm -rf /data/prometheus-2.52.0.linux-amd64.tar.gz
 rm -rf /data/prometheus-2.52.0.linux-amd64
 userdel prometheus
 rm -rf /data/prometheus-HA.sh
+systemctl daemon-reload
 EOF
 ```
 
