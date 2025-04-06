@@ -30,6 +30,7 @@ systemctl stop dovecot
 yum remove  dovecot -y
 userdel alertmanager-smtpuser
 userdel smtpuser
+systemctl daemon-reload
 EOF
 ```
 
